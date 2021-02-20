@@ -1,10 +1,19 @@
 version: "2.0"
 
 stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
 
-- story: happy path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - story: greet and subscribe
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - active_loop: null
+      - action: utter_subscribed

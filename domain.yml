@@ -7,10 +7,35 @@ session_config:
 intents:
   - greet
   - mood_great
+  - subscribe
+  - inform_email
+  - inform_frequency
 
 responses:
   utter_greet:
-    - text: "Hey! How are you?"
-    - text: "Hi, how's it going?"
+    - text: Hey! How are you?
+    - text: Hi, how's it going?
   utter_happy:
-    - text: "Great, carry on!"
+    - text: Great, carry on!
+  utter_ask_email:
+    - text: What is your email address?
+  utter_ask_frequency:
+    - text: How often do you want to receive emails from me?
+  utter_subscribed:
+    - text: You're all set! Check your inbox at {email} to confirm your subscription.
+            You will receive emails {frequency}.
+
+forms:
+  newsletter_form:
+    email:
+      - type: from_text
+    frequency:
+      - type: from_text
+
+slots:
+  email:
+    type: text
+    influence_conversation: false
+  frequency:
+    type: text
+    influence_conversation: false

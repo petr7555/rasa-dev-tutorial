@@ -1,36 +1,57 @@
 version: "2.0"
 
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
 
+  - intent: subscribe
+    examples: |
+      - I want to get the newsletter
+      - Can you send me the newsletter?
+      - Can you sign me up for the newsletter?
+      - I want to subscribe to a newsletter.
+
+  - intent: inform_email
+    examples: |
+      - My email is example@example.com
+      - random@example.com
+      - Please send it to anything@example.com
+      - Email is something@example.com
+
+  - intent: inform_frequency
+    examples: |
+      - every week
+      - once a week
+      - twice per month
+      - as ofter as possible
+      - once a month
