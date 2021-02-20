@@ -28,7 +28,8 @@ responses:
 forms:
   newsletter_form:
     email:
-      - type: from_text
+      - type: from_entity
+        entity: email
     frequency:
       - type: from_text
 
@@ -39,3 +40,6 @@ slots:
   frequency:
     type: text
     influence_conversation: false
+
+entities:
+  - email

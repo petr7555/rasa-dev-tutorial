@@ -43,10 +43,10 @@ nlu:
 
   - intent: inform_email
     examples: |
-      - My email is example@example.com
-      - random@example.com
-      - Please send it to anything@example.com
-      - Email is something@example.com
+      - My email is [example@example.com](email)
+      - [random@example.com](email)
+      - Please send it to [anything@example.com](email)
+      - Email is [something@example.com](email)
 
   - intent: inform_frequency
     examples: |
