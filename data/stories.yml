@@ -28,3 +28,35 @@ stories:
       - intent: deny
       - action: action_deactivate_loop
       - active_loop: null
+
+  - story: interactive_story_1
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - requested_slot: email
+      - intent: chitchat
+      - action: utter_ask_continue
+      - intent: affirm
+      - action: newsletter_form
+      - slot_was_set:
+          - requested_slot: email
+      - slot_was_set:
+          - email: example@email.com
+      - slot_was_set:
+          - email: example@email.com
+      - slot_was_set:
+          - requested_slot: frequency
+      - intent: chitchat
+      - action: utter_ask_continue
+      - intent: affirm
+      - action: newsletter_form
+      - slot_was_set:
+          - requested_slot: frequency
+      - slot_was_set:
+          - frequency: twice a week
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_subscribed
