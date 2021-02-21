@@ -55,3 +55,58 @@ nlu:
       - twice per month
       - as ofter as possible
       - once a month
+
+  - intent: chitchat
+    examples: |
+      - that's not what I want to do
+      - wait stop
+      - you're no help
+      - this is no help at all
+      - how old are you
+      - I want to order a pizza
+      - tell me the weather
+      - this isn't working
+      - I already told you that
+      - don't like that
+      - I don't want to tell you that
+      - none of your business
+      - that's not right
+      - stop asking
+      - nevermind
+      - I want to do something else
+      - I changed my mind
+
+  - intent: affirm
+    examples: |
+      - yes
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - sure
+      - ok
+      - why not
+      - ok great
+      - yes I did
+      - yeah, great
+      - pretty good
+      - fine
+      - You bet
+      - I sure did
+      - more or less
+
+  - intent: deny
+    examples: |
+      - no
+      - never
+      - I don't think so
+      - no way
+      - not really
+      - none
+      - absolutely not
+      - no thanks
+      - didn't do any
+      - no I didn't
+      - could have been better
+      - not great
+      - nope

@@ -10,6 +10,9 @@ intents:
   - subscribe
   - inform_email
   - inform_frequency
+  - chitchat
+  - affirm
+  - deny
 
 responses:
   utter_greet:
@@ -24,6 +27,8 @@ responses:
   utter_subscribed:
     - text: You're all set! Check your inbox at {email} to confirm your subscription.
             You will receive emails {frequency}.
+  utter_ask_continue:
+    - text: Sorry, I don't quite understand. Do you want to continue?
 
 forms:
   newsletter_form:
@@ -32,6 +37,7 @@ forms:
         entity: email
     frequency:
       - type: from_text
+        intent: inform_frequency
 
 slots:
   email:

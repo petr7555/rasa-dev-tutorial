@@ -7,3 +7,24 @@ stories:
       - action: utter_greet
       - intent: mood_great
       - action: utter_happy
+
+  - story: newsletter form continue
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - intent: chitchat
+      - action: utter_ask_continue
+      - intent: affirm
+      - action: newsletter_form
+
+  - story: newsletter form stop
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - intent: chitchat
+      - action: utter_ask_continue
+      - intent: deny
+      - action: action_deactivate_loop
+      - active_loop: null
