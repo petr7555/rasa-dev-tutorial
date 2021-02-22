@@ -74,3 +74,43 @@ stories:
       - intent: ask_price
       - action: utter_price_for_twice_a_week
       - action: newsletter_form
+
+  - story: explain email
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - requested_slot: email
+      - intent: explain
+      - action: utter_explain_email
+      - action: newsletter_form
+
+  - story: explain frequency
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - requested_slot: email
+      - slot_was_set:
+          - requested_slot: frequency
+      - intent: explain
+      - action: utter_explain_frequency
+      - action: newsletter_form
+
+  - story: explain both email and frequency
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - requested_slot: email
+      - intent: explain
+      - action: utter_explain_email
+      - action: newsletter_form
+      - slot_was_set:
+          - requested_slot: frequency
+      - intent: explain
+      - action: utter_explain_frequency
+      - action: newsletter_form

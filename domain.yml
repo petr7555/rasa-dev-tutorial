@@ -14,6 +14,7 @@ intents:
   - affirm
   - deny
   - ask_price
+  - explain
 
 responses:
   utter_greet:
@@ -36,6 +37,10 @@ responses:
     - text: Once a week subscription costs $5.
   utter_price_for_twice_a_week:
     - text: Twice a week subscription costs $10.
+  utter_explain_email:
+    - text: So that I know where to send it.
+  utter_explain_frequency:
+    - text: So that I know how often to send it.
 
 forms:
   newsletter_form:
@@ -64,6 +69,12 @@ slots:
   notification:
     type: bool
     influence_conversation: false
+  requested_slot:
+    type: categorical
+    influence_conversation: true
+    values:
+      - email
+      - frequency
 
 entities:
   - email

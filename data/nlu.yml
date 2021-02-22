@@ -117,3 +117,11 @@ nlu:
       - what's the price
       - how much will it cost
       - How much will I pay?
+
+  - intent: explain
+    examples: |
+      - why
+      - why do you need to know that
+      - why should i give you this information
+      - why are you asking?
+      - why is this needed?
