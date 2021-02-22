@@ -14,3 +14,17 @@ rules:
       - action: newsletter_form
       - active_loop: null
       - action: utter_subscribed
+
+  - rule: once a week
+    steps:
+      - slot_was_set:
+          - frequency: once a week
+      - intent: ask_price
+      - action: utter_price_for_once_a_week
+
+  - rule: twice a week
+    steps:
+      - slot_was_set:
+          - frequency: twice a week
+      - intent: ask_price
+      - action: utter_price_for_twice_a_week

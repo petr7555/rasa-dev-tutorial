@@ -76,34 +76,58 @@ stories:
 
   - story: Newsletter form two interruptions
     steps:
-      - user: |
+      - intent: subscribe
+        user: |-
           I want to subscribe
-        intent: subscribe
       - action: newsletter_form
       - active_loop: newsletter_form
-      - user: |
+      - slot_was_set:
+          - requested_slot: email
+      - intent: chitchat
+        user: |-
           How's the weather?
-        intent: chitchat
       - action: utter_ask_continue
-      - user: |
+      - intent: affirm
+        user: |-
           Yes, I do
-        intent: affirm
       - action: newsletter_form
-      - user: |
+      - slot_was_set:
+          - requested_slot: email
+      - intent: inform_email
+        user: |-
           my email is [example@email.com](email)
-        intent: inform_email
+      - slot_was_set:
+          - email: example@email.com
       - action: newsletter_form
-      - user: |
+      - slot_was_set:
+          - email: example@email.com
+      - slot_was_set:
+          - requested_slot: frequency
+      - intent: chitchat
+        user: |-
           I want to order a pizza
-        intent: chitchat
       - action: utter_ask_continue
-      - user: |
+      - intent: affirm
+        user: |-
           Sure
-        intent: affirm
       - action: newsletter_form
-      - user: |
+      - slot_was_set:
+          - requested_slot: frequency
+      - intent: inform_frequency
+        user: |-
           twice a week
-        intent: inform_frequency
       - action: newsletter_form
+      - slot_was_set:
+          - frequency: twice a week
+      - slot_was_set:
+          - requested_slot: notification
+      - intent: affirm
+        user: |-
+          yes
+      - action: newsletter_form
+      - slot_was_set:
+          - notification: yes
+      - slot_was_set:
+          - requested_slot: null
       - active_loop: null
       - action: utter_subscribed

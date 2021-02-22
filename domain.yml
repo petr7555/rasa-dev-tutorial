@@ -13,6 +13,7 @@ intents:
   - chitchat
   - affirm
   - deny
+  - ask_price
 
 responses:
   utter_greet:
@@ -24,11 +25,17 @@ responses:
     - text: What is your email address?
   utter_ask_frequency:
     - text: How often do you want to receive emails from me?
+  utter_ask_notification:
+    - text: Do you want notifications?
   utter_subscribed:
     - text: You're all set! Check your inbox at {email} to confirm your subscription.
             You will receive emails {frequency}.
   utter_ask_continue:
     - text: Sorry, I don't quite understand. Do you want to continue?
+  utter_price_for_once_a_week:
+    - text: Once a week subscription costs $5.
+  utter_price_for_twice_a_week:
+    - text: Twice a week subscription costs $10.
 
 forms:
   newsletter_form:
@@ -38,13 +45,24 @@ forms:
     frequency:
       - type: from_text
         intent: inform_frequency
+    notification:
+      - type: from_text
+        intent:
+          - affirm
+          - deny
 
 slots:
   email:
     type: text
     influence_conversation: false
   frequency:
-    type: text
+    type: categorical
+    values:
+      - once a week
+      - twice a week
+    influence_conversation: true
+  notification:
+    type: bool
     influence_conversation: false
 
 entities:

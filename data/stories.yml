@@ -52,3 +52,25 @@ stories:
           - requested_slot: frequency
       - active_loop: null
       - action: utter_subscribed
+
+  - story: once a week
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - frequency: once a week
+      - intent: ask_price
+      - action: utter_price_for_once_a_week
+      - action: newsletter_form
+
+  - story: twice a week
+    steps:
+      - intent: subscribe
+      - action: newsletter_form
+      - active_loop: newsletter_form
+      - slot_was_set:
+          - frequency: twice a week
+      - intent: ask_price
+      - action: utter_price_for_twice_a_week
+      - action: newsletter_form

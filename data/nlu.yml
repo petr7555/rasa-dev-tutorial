@@ -110,3 +110,10 @@ nlu:
       - could have been better
       - not great
       - nope
+
+  - intent: ask_price
+    examples: |
+      - how much will it be
+      - what's the price
+      - how much will it cost
+      - How much will I pay?
