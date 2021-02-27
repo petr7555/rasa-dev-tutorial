@@ -24,7 +24,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install rasa-x
-      - name: Train and test
+      - name: Train
         run: |
-          rasa train && rasa test
+          rasa train
+      - name: Test
+        run: |
+          rasa test --fail-on-prediction-errors
