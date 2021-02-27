@@ -22,7 +22,7 @@ jobs:
           rasa_train: true # Run rasa train
           rasa_test: true # Run rasa test
           test_args: --fail-on-prediction-errors # Fail pipeline when test fails
-          test_type: all
+          test_type: all # Run both 'core' and 'nlu' tests
           publish_summary: true # Publish tests summary as a PR comment
           github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub Token - required to add a comment with summary
       - name: Upload model
