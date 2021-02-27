@@ -30,3 +30,8 @@ jobs:
       - name: Test
         run: |
           rasa test --fail-on-prediction-errors
+      - name: Upload Artifact
+          uses: actions/upload-artifact@v1
+          with:
+            name: test_results
+            path: results/
