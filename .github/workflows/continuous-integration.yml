@@ -26,14 +26,15 @@ jobs:
           publish_summary: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload model
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@master
         with:
           name: model
           path: models
-      - uses: actions/upload-artifact@v2
+      - name: Store test results
+        uses: actions/upload-artifact@v2
         with:
-          name: rasa-demo-cfg
+          name: test-results
           path: |
             results
             reports
