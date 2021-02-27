@@ -21,6 +21,7 @@ jobs:
           data_validate: true # Validates domain and data files to check for possible mistakes
           rasa_train: true # Run rasa train
           rasa_test: true # Run rasa test
+          cross_validation: true
           test_args: --fail-on-prediction-errors # Fail pipeline when test fails
           test_type: all # Run both 'core' and 'nlu' tests
           publish_summary: true # Publish tests summary as a PR comment
