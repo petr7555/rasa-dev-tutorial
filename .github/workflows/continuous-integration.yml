@@ -18,13 +18,13 @@ jobs:
       - name: Rasa Train and Test GitHub Action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
-          data_validate: true
-          rasa_train: true
-          cross_validation: true
-          rasa_test: true
+          data_validate: true # Validates domain and data files to check for possible mistakes
+          rasa_train: true # Run rasa train
+          rasa_test: true # Run rasa test
+          test_args: --fail-on-prediction-errors # Fail pipeline when test fails
           test_type: all
-          publish_summary: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_summary: true # Publish tests summary as a PR comment
+          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub Token - required to add a comment with summary
       - name: Upload model
         if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@master
