@@ -32,6 +32,7 @@ jobs:
           rasa test --fail-on-prediction-errors
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
+        if: ${{ always() }}
         with:
           name: test_results
           path: results/
