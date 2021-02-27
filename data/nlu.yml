@@ -161,3 +161,16 @@ nlu:
       - why should i give you this information
       - why are you asking?
       - why is this needed?
+
+  - intent: confirm
+    examples: |
+      - can I confirm
+      - I want to confirm
+      - I would like to confirm that
+
+  - intent: thankyou
+    examples: |
+      - thank you
+      - thanks
+      - thanks a lot
+      - thank you so much!

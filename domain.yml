@@ -18,6 +18,8 @@ intents:
   - mood_bad
   - goodbye
   - ask_how_i_feel
+  - confirm
+  - thankyou
 
 responses:
   utter_greet:
@@ -52,6 +54,10 @@ responses:
     - text: I'm sorry to hear that.
   utter_goodbye:
     - text: Bye
+  utter_ask_confirm:
+    - text: Do you really want to confirm that?
+  utter_confirmed:
+    - text: Confirmed.
 
 forms:
   newsletter_form:

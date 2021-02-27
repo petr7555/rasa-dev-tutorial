@@ -140,3 +140,12 @@ stories:
       - checkpoint: check_flow_finished
       - intent: goodbye
       - action: utter_goodbye
+
+  - story: confirm by affirm or thankyou
+    steps:
+      - intent: confirm
+      - action: utter_ask_confirm
+      - or:
+          - intent: affirm
+          - intent: thankyou
+      - action: utter_confirmed
