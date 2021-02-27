@@ -21,13 +21,8 @@ jobs:
           data_validate: true # Validates domain and data files to check for possible mistakes
           rasa_train: true # Run rasa train
           rasa_test: true # Run rasa test
-          cross_validation: true
           test_args: --fail-on-prediction-errors # Fail pipeline when test fails
           test_type: all # Run both 'core' and 'nlu' tests
-          result_directory: results
-          report_directory: reports
-          publish_summary: true # Publish tests summary as a PR comment
-          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub Token - required to add a comment with summary
       - name: Upload model
         if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@master
