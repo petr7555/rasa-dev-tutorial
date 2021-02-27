@@ -15,6 +15,9 @@ intents:
   - deny
   - ask_price
   - explain
+  - mood_bad
+  - goodbye
+  - ask_how_i_feel
 
 responses:
   utter_greet:
@@ -41,6 +44,14 @@ responses:
     - text: So that I know where to send it.
   utter_explain_frequency:
     - text: So that I know how often to send it.
+  utter_ask_user_question:
+    - text: How do you feel?
+  utter_great:
+    - text: Glad to hear that!
+  utter_bad:
+    - text: I'm sorry to hear that.
+  utter_goodbye:
+    - text: Bye
 
 forms:
   newsletter_form:

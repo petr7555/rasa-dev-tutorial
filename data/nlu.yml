@@ -34,6 +34,42 @@ nlu:
       - so good
       - so perfect
 
+  - intent: mood_bad
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: ask_how_i_feel
+    examples: |
+      - Ask me how I feel
+      - Do you want to know how I feel?
+      - Ask me about my feelings
+
   - intent: subscribe
     examples: |
       - I want to get the newsletter

@@ -114,3 +114,29 @@ stories:
       - intent: explain
       - action: utter_explain_frequency
       - action: newsletter_form
+
+  - story: beginning of flow
+    steps:
+      - intent: ask_how_i_feel
+      - action: utter_ask_user_question
+      - checkpoint: check_asked_question
+
+  - story: handle user affirm
+    steps:
+      - checkpoint: check_asked_question
+      - intent: mood_great
+      - action: utter_great
+      - checkpoint: check_flow_finished
+
+  - story: handle user deny
+    steps:
+      - checkpoint: check_asked_question
+      - intent: mood_bad
+      - action: utter_bad
+      - checkpoint: check_flow_finished
+
+  - story: finish flow
+    steps:
+      - checkpoint: check_flow_finished
+      - intent: goodbye
+      - action: utter_goodbye
