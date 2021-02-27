@@ -107,7 +107,7 @@ stories:
         user: |-
           I want to order a pizza
       - action: utter_ask_continue
-      - intent: deny
+      - intent: affirm
         user: |-
           Sure
       - action: newsletter_form
