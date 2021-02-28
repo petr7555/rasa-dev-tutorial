@@ -25,15 +25,29 @@ intents:
 responses:
   utter_greet:
     - text: Hey! How are you?
-    - text: Hi, how's it going?
+      buttons:
+        - title: great
+          payload: I feel great
+        - title: subscribe
+          payload: I want to subscribe
   utter_happy:
     - text: Great, carry on!
   utter_ask_email:
-    - text: What is your email address?
+    - text: Which email would you like to use?
+      buttons:
+        - title: Work email
+          payload: /inform_email{{"email":"example@work.com"}}
+        - title: Personal email
+          payload: /inform_email{{"email":"example@home.com"}}
   utter_ask_frequency:
     - text: How often do you want to receive emails from me?
   utter_ask_notification:
     - text: Do you want notifications?
+      buttons:
+        - title: Yes
+          payload: /affirm
+        - title: No
+          payload: /deny
   utter_subscribed:
     - text: You're all set! Check your inbox at {email} to confirm your subscription.
             You will receive emails {frequency}.
