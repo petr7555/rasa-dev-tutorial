@@ -20,6 +20,7 @@ intents:
   - ask_how_i_feel
   - confirm
   - thankyou
+  - inform_age
 
 responses:
   utter_greet:
@@ -58,6 +59,10 @@ responses:
     - text: Do you really want to confirm that?
   utter_confirmed:
     - text: Confirmed.
+  utter_email_back:
+    - text: Your email is {email}.
+  utter_age_back:
+    - text: Your age is {age}.
 
 forms:
   newsletter_form:
@@ -92,6 +97,10 @@ slots:
     values:
       - email
       - frequency
+  age:
+    type: text
+    influence_conversation: false
 
 entities:
   - email
+  - age

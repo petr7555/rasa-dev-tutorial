@@ -149,3 +149,13 @@ stories:
           - intent: affirm
           - intent: thankyou
       - action: utter_confirmed
+
+  - story: tell email
+    steps:
+      - intent: inform_email
+      - action: utter_email_back
+
+  - story: tell age
+    steps:
+      - intent: inform_age
+      - action: utter_age_back

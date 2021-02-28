@@ -174,3 +174,10 @@ nlu:
       - thanks
       - thanks a lot
       - thank you so much!
+
+  - intent: inform_age
+    examples: |
+      - My age is [20 years](age)
+      - I am [15](age)
+      - I am [47 years](age)
+      - I am [8 years](age) old
