@@ -49,9 +49,11 @@ responses:
           payload: /affirm
         - title: No
           payload: /deny
+  utter_ask_age:
+    - text: What is your age?
   utter_subscribed:
     - text: You're all set! Check your inbox at {email} to confirm your subscription.
-            You will receive emails {frequency}.
+            You will receive emails {frequency}. Your age is {age}.
   utter_ask_continue:
     - text: Sorry, I don't quite understand. Do you want to continue?
   utter_price_for_once_a_week:
@@ -92,6 +94,9 @@ forms:
         intent:
           - affirm
           - deny
+    age:
+      - type: from_entity
+        entity: age
 
 slots:
   email:
@@ -119,3 +124,4 @@ slots:
 entities:
   - email
   - age
+
