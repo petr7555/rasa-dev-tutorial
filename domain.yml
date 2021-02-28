@@ -30,6 +30,7 @@ responses:
           payload: I feel great
         - title: subscribe
           payload: I want to subscribe
+      image: https://media1.giphy.com/media/tczJoRU7XwBS8/giphy.gif
   utter_happy:
     - text: Great, carry on!
   utter_ask_email:
