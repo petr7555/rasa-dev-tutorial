@@ -49,6 +49,8 @@ responses:
           payload: /affirm
         - title: No
           payload: /deny
+  utter_ask_can_ask_age:
+    - text: Can I ask what your age is?
   utter_ask_age:
     - text: What is your age?
   utter_subscribed:
@@ -94,6 +96,13 @@ forms:
         intent:
           - affirm
           - deny
+    can_ask_age:
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
     age:
       - type: from_entity
         entity: age
@@ -117,6 +126,9 @@ slots:
     values:
       - email
       - frequency
+  can_ask_age:
+    type: bool
+    influence_conversation: false
   age:
     type: text
     influence_conversation: false
@@ -125,3 +137,5 @@ entities:
   - email
   - age
 
+actions:
+  - validate_newsletter_form
