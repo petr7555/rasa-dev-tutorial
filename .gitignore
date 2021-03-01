@@ -8,3 +8,6 @@ models/*
 !models/.gitkeep 
 results
 story_graph.dot
+
+# keep secret keys out of VCS
+.env

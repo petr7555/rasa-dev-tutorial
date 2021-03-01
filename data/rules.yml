@@ -14,6 +14,7 @@ rules:
       - action: newsletter_form
       - active_loop: null
       - action: utter_subscribed
+      - action: submit_newsletter_form
 
   - rule: once a week
     steps:

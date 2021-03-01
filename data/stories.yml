@@ -52,6 +52,7 @@ stories:
           - requested_slot: frequency
       - active_loop: null
       - action: utter_subscribed
+      - action: submit_newsletter_form
 
   - story: once a week
     steps:

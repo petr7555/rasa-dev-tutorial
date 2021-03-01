@@ -141,3 +141,4 @@ entities:
 
 actions:
   - validate_newsletter_form
+  - submit_newsletter_form
