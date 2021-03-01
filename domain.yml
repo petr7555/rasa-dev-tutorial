@@ -42,7 +42,7 @@ responses:
           payload: /inform_email{{"email":"example@home.com"}}
   utter_ask_frequency:
     - text: How often do you want to receive emails from me?
-  utter_ask_notification:
+  utter_ask_notifications:
     - text: Do you want notifications?
       buttons:
         - title: Yes
@@ -91,11 +91,13 @@ forms:
     frequency:
       - type: from_text
         intent: inform_frequency
-    notification:
-      - type: from_text
-        intent:
-          - affirm
-          - deny
+    notifications:
+      - type: from_intent
+        intent: affirm
+        value: true
+      - type: from_intent
+        intent: deny
+        value: false
     can_ask_age:
       - type: from_intent
         intent: affirm
@@ -117,7 +119,7 @@ slots:
       - once a week
       - twice a week
     influence_conversation: true
-  notification:
+  notifications:
     type: bool
     influence_conversation: false
   requested_slot:

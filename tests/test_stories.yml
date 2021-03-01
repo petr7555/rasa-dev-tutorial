@@ -120,13 +120,13 @@ stories:
       - slot_was_set:
           - frequency: twice a week
       - slot_was_set:
-          - requested_slot: notification
+          - requested_slot: notifications
       - intent: affirm
         user: |-
           yes
       - action: newsletter_form
       - slot_was_set:
-          - notification: yes
+          - notifications: yes
       - slot_was_set:
           - requested_slot: null
       - active_loop: null
