@@ -86,11 +86,17 @@ nlu:
 
   - intent: inform_frequency
     examples: |
-      - every week
-      - once a week
-      - twice per month
-      - as ofter as possible
-      - once a month
+      - [once a week](frequency)
+      - [once](frequency)
+      - [once per week](frequency)
+      - [twice a week](frequency)
+      - [twice]{"entity": "frequency", "value": "twice a week"}
+      - [twice per week]{"entity": "frequency", "value": "twice a week"}
+
+  - synonym: once a week
+    examples: |
+      - once
+      - once per week
 
   - intent: chitchat
     examples: |

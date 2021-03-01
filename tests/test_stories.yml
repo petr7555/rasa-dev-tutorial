@@ -28,7 +28,7 @@ stories:
         intent: inform_email
       - action: newsletter_form
       - user: |
-          twice a week
+          [twice a week](frequency)
         intent: inform_frequency
       - action: newsletter_form
       - active_loop: null
@@ -118,7 +118,7 @@ stories:
           - requested_slot: frequency
       - intent: inform_frequency
         user: |-
-          twice a week
+          [twice a week](frequency)
       - action: newsletter_form
       - slot_was_set:
           - frequency: twice a week
