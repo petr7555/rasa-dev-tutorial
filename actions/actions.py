@@ -10,9 +10,17 @@ import uuid
 
 load_dotenv()
 
-airtable_api_key = os.getenv("AIRTABLE_API_KEY")
-base_id = os.getenv("BASE_ID")
-table_name = os.getenv("TABLE_NAME")
+
+def get_env_var(key):
+    env_var = os.getenv(key)
+    if env_var is None:
+        raise RuntimeError(f"Environment variable {key} was not found.")
+    return env_var
+
+
+airtable_api_key = get_env_var("AIRTABLE_API_KEY")
+base_id = get_env_var("BASE_ID")
+table_name = get_env_var("TABLE_NAME")
 
 
 def create_newsletter_record(email, frequency, notifications, can_ask_age, age):
