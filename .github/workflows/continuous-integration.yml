@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Rasa Train and Test GitHub Action
+      - name: Rasa Validate, Train and Test GitHub Action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
           data_validate: true # Validates domain and data files to check for possible mistakes
