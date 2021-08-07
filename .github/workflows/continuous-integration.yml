@@ -18,6 +18,7 @@ jobs:
       - name: Rasa Validate, Train and Test GitHub Action
         uses: RasaHQ/rasa-train-test-gha@main
         with:
+          rasa_version: 2.8.0
           data_validate: true # Validates domain and data files to check for possible mistakes
           rasa_train: true # Run rasa train
           rasa_test: true # Run rasa test
