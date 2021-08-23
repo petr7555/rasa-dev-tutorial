@@ -26,7 +26,6 @@
             margin: 0;
             padding: 0;
             border: 0;
-            font-size: 100%;
             font: inherit;
             vertical-align: baseline;
         }
@@ -51,7 +50,6 @@
 
         blockquote:before, blockquote:after,
         q:before, q:after {
-            content: '';
             content: none;
         }
 
@@ -68,7 +66,7 @@
             --primary-color: #5a18ee;
             --secondary-color: #7f7afc;
             --ternary-color: #8c54f4;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: Roboto, sans-serif;
             background-color: var(--primary-color);
         }
 
@@ -96,7 +94,7 @@
             outline: none;
         }
 
-        .button_send{
+        .button {
             background: var(--ternary-color);
             border: none;
             padding: 0 1rem;
@@ -104,11 +102,20 @@
             border-radius: 3px;
             outline: none;
             color: var(--white-color);
+            font: inherit;
+        }
+
+        .button:hover {
+            background: #713dc3;
+        }
+        
+        .button:active {
+            background: #5d2db0;
         }
 
         #messages {
-            flex-direction: column;
             display: flex;
+            flex-direction: column;
         }
 
         .message {
@@ -146,7 +153,15 @@
         }
 
         .title {
-            font-size: 24px;
+            font-size: 23px;
+        }
+        
+        .quick-replies {
+            display: flex;
+            align-self: flex-end;
+            height: 2.5rem;
+            box-sizing: border-box;
+            margin: 10px 6px 0 30px;
         }
 
     </style>
@@ -158,9 +173,11 @@
     <div id="messages"></div>
     <form id="form">
       <input id="message-input" autocomplete="off"/>
-      <button class="button_send">Send</button>
+      <button class="button">Send</button>
     </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js" integrity="sha512-PU5S6BA03fRv1Q5fpwXjg5nlRrgdoguZ74urFInkbABMCENyx5oP3hrDzYMMPh3qdLdknIvrGj3yqZ4JuU7Nag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"
+            integrity="sha512-PU5S6BA03fRv1Q5fpwXjg5nlRrgdoguZ74urFInkbABMCENyx5oP3hrDzYMMPh3qdLdknIvrGj3yqZ4JuU7Nag=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // Connect to RASA server
         const socket = io("http://localhost:5005");
@@ -186,6 +203,25 @@
             img.src = src;
             item.appendChild(img);
             messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function appendQuickReplies(quickReplies) {
+            const quickRepliesNode = document.createElement('div');
+            quickRepliesNode.classList.add("quick-replies");
+            quickReplies.forEach(quickReply => {
+                const quickReplyDiv = document.createElement('button');
+                quickReplyDiv.innerHTML = quickReply.title;
+                quickReplyDiv.classList.add("button");
+                quickReplyDiv.addEventListener("click", () => {
+                    messages.removeChild(quickRepliesNode);
+                    socket.emit('user_uttered', {
+                        "message": quickReply.payload,
+                    });
+                })
+                quickRepliesNode.appendChild(quickReplyDiv);
+            })
+            messages.appendChild(quickRepliesNode);
             window.scrollTo(0, document.body.scrollHeight);
         }
 
@@ -218,6 +254,9 @@
             }
             if (response.attachment) {
                 appendImage(response.attachment.payload.src, "received");
+            }
+            if (response.quick_replies) {
+                appendQuickReplies(response.quick_replies);
             }
         });
     </script>
