@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <title>Socket.IO chat</title>
+    <style>
+        /** RESET **/
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+         v2.0 | 20110126
+         License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /** END OF RESET **/
+
+        body {
+            --white-color: #f3f4fb;
+            --black-color: black;
+            --primary-color: #5a18ee;
+            --secondary-color: #7f7afc;
+            --ternary-color: #8c54f4;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary-color);
+        }
+
+        #form {
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            background-color: var(--black-color);
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 0 1rem;
+            border-radius: 2rem;
+            margin: 0.25rem;
+            background-color: var(--white-color);
+        }
+
+        #message-input:focus {
+            outline: none;
+        }
+
+        .button_send{
+            background: var(--ternary-color);
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: var(--white-color);
+        }
+
+        #messages {
+            flex-direction: column;
+            display: flex;
+        }
+
+        .message {
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            word-wrap: break-word;
+            max-width: calc(100% - 40px - 32px);
+        }
+
+        .message:last-of-type {
+            margin-bottom: 10px;
+        }
+
+        .message_received {
+            background: var(--white-color);
+            color: var(--black-color);
+            border-bottom-left-radius: 0;
+            align-self: flex-start;
+            margin: 10px 30px 0 10px;
+        }
+
+        .message_sent {
+            color: var(--white-color);
+            background: var(--secondary-color);
+            border-bottom-right-radius: 0;
+            align-self: flex-end;
+            margin: 10px 10px 0 30px;
+        }
+
+        .header {
+            background-color: var(--black-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 12px;
+        }
+
+        .title {
+            font-size: 24px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <p class="title">Chat with Rasa chatbot</p>
+    </header>
+    <div id="messages"></div>
+    <form id="form">
+      <input id="message-input" autocomplete="off"/>
+      <button class="button_send">Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js" integrity="sha512-PU5S6BA03fRv1Q5fpwXjg5nlRrgdoguZ74urFInkbABMCENyx5oP3hrDzYMMPh3qdLdknIvrGj3yqZ4JuU7Nag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // Connect to RASA server
+        const socket = io("http://localhost:5005");
+
+        const messages = document.getElementById('messages');
+        const form = document.getElementById('form');
+        const messageInput = document.getElementById('message-input');
+
+        function appendMessage(msg, type) {
+            const item = document.createElement('div');
+            item.textContent = msg;
+            item.classList.add("message");
+            item.classList.add(`message_${type}`);
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function appendImage(src, type) {
+            const item = document.createElement('div');
+            item.classList.add("message");
+            item.classList.add(`message_${type}`);
+            const img = document.createElement('img');
+            img.src = src;
+            item.appendChild(img);
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const msg = messageInput.value;
+            if (msg) {
+                socket.emit('user_uttered', {
+                    "message": msg,
+                });
+                messageInput.value = '';
+
+                appendMessage(msg, "sent");
+            }
+        });
+
+        socket.on('connect', function () {
+            console.log("Connected to socket.io server");
+        });
+
+        socket.on('connect_error', (error) => {
+            // Write any connection errors to the console 
+            console.error(error);
+        });
+
+        socket.on('bot_uttered', function (response) {
+            console.log("Bot uttered:", response);
+            if (response.text) {
+                appendMessage(response.text, "received");
+            }
+            if (response.attachment) {
+                appendImage(response.attachment.payload.src, "received");
+            }
+        });
+    </script>
+  </body>
+</html>
