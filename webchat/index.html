@@ -63,11 +63,13 @@
         body {
             --white-color: #f3f4fb;
             --black-color: black;
-            --primary-color: #5a18ee;
-            --secondary-color: #7f7afc;
-            --ternary-color: #8c54f4;
+            --blue-color: #5a18ee;
+            --light-purple-color: #7f7afc;
+            --light-violet-color: #8c54f4;
+            --darker-violet-color: #713dc3;
+            --dark-violet-color: #5d2db0;
             font-family: Roboto, sans-serif;
-            background-color: var(--primary-color);
+            background-color: var(--blue-color);
         }
 
         #form {
@@ -95,7 +97,7 @@
         }
 
         .button {
-            background: var(--ternary-color);
+            background: var(--light-violet-color);
             border: none;
             padding: 0 1rem;
             margin: 0.25rem;
@@ -106,16 +108,17 @@
         }
 
         .button:hover {
-            background: #713dc3;
+            background: var(--darker-violet-color);
         }
-        
+
         .button:active {
-            background: #5d2db0;
+            background: var(--dark-violet-color);
         }
 
         #messages {
             display: flex;
             flex-direction: column;
+            padding: 10px 10px 60px 10px;
         }
 
         .message {
@@ -123,9 +126,6 @@
             border-radius: 10px;
             word-wrap: break-word;
             max-width: calc(100% - 40px - 32px);
-        }
-
-        .message:last-of-type {
             margin-bottom: 10px;
         }
 
@@ -134,15 +134,13 @@
             color: var(--black-color);
             border-bottom-left-radius: 0;
             align-self: flex-start;
-            margin: 10px 30px 0 10px;
         }
 
         .message_sent {
             color: var(--white-color);
-            background: var(--secondary-color);
+            background: var(--light-purple-color);
             border-bottom-right-radius: 0;
             align-self: flex-end;
-            margin: 10px 10px 0 30px;
         }
 
         .header {
@@ -155,13 +153,12 @@
         .title {
             font-size: 23px;
         }
-        
+
         .quick-replies {
             display: flex;
             align-self: flex-end;
             height: 2.5rem;
             box-sizing: border-box;
-            margin: 10px 6px 0 30px;
         }
 
     </style>
@@ -186,13 +183,17 @@
         const form = document.getElementById('form');
         const messageInput = document.getElementById('message-input');
 
+        function scrollToBottom() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
         function appendMessage(msg, type) {
             const item = document.createElement('div');
             item.textContent = msg;
             item.classList.add("message");
             item.classList.add(`message_${type}`);
             messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
+            scrollToBottom();
         }
 
         function appendImage(src, type) {
@@ -201,9 +202,9 @@
             item.classList.add(`message_${type}`);
             const img = document.createElement('img');
             img.src = src;
+            img.onload = scrollToBottom;
             item.appendChild(img);
             messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
         }
 
         function appendQuickReplies(quickReplies) {
@@ -215,6 +216,7 @@
                 quickReplyDiv.classList.add("button");
                 quickReplyDiv.addEventListener("click", () => {
                     messages.removeChild(quickRepliesNode);
+                    appendMessage(quickReply.title, "sent");
                     socket.emit('user_uttered', {
                         "message": quickReply.payload,
                     });
@@ -222,7 +224,7 @@
                 quickRepliesNode.appendChild(quickReplyDiv);
             })
             messages.appendChild(quickRepliesNode);
-            window.scrollTo(0, document.body.scrollHeight);
+            scrollToBottom();
         }
 
         form.addEventListener('submit', function (e) {
@@ -239,7 +241,7 @@
         });
 
         socket.on('connect', function () {
-            console.log("Connected to socket.io server");
+            console.log("Connected to Socket.io server");
         });
 
         socket.on('connect_error', (error) => {
