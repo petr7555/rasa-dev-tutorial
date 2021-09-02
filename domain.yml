@@ -24,13 +24,28 @@ intents:
 
 responses:
   utter_greet:
-    - text: Hey! How are you?
-      buttons:
-        - title: great
-          payload: I feel great
-        - title: subscribe
-          payload: I want to subscribe
-      image: https://media1.giphy.com/media/tczJoRU7XwBS8/giphy.gif
+    - text: ""
+      elements:
+        - title: Welcome!
+          image_url: https://avatars.githubusercontent.com/u/21214473?s=200&v=4
+          subtitle: Rasa is an open source machine learning framework.
+          default_action:
+            type: web_url
+            url: https://github.com/RasaHQ/rasa
+            webview_height_ratio: tall
+          buttons:
+            - title: Compact
+              type: web_url
+              url: https://github.com/RasaHQ/rasa
+              webview_height_ratio: compact           
+            - title: Tall
+              type: web_url
+              url: https://github.com/RasaHQ/rasa
+              webview_height_ratio: tall            
+            - title: Full
+              type: web_url
+              url: https://github.com/RasaHQ/rasa
+              webview_height_ratio: full
   utter_happy:
     - text: Great, carry on!
   utter_ask_email:
