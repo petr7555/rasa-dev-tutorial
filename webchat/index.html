@@ -279,6 +279,7 @@
             if (msg) {
                 socket.emit('user_uttered', {
                     "message": msg,
+                    "session_id": socket.id,
                 });
                 messageInput.value = '';
 
@@ -288,6 +289,7 @@
 
         socket.on('connect', function () {
             console.log("Connected to Socket.io server");
+            console.log("Session ID: ", socket.id);
         });
 
         socket.on('connect_error', (error) => {
